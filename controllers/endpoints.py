@@ -1,8 +1,8 @@
 from flask import Flask, request
-
+import logging
 from db import query_data
-from logging_config import *
 
+from logging_config import *
 app = Flask(__name__)
 
 
@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route('/users')
 def get_users():
     try:
-        data = query_data("SELECT * FROM user where name = 'anjuna'")
+        data = query_data("SELECT * FROM users where name = 'anjuna'")
         return data
     except Exception as e:
         logging.info("fetched all data from '%s' ---%s", request.remote_addr, e)
